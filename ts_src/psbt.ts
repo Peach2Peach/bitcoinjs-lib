@@ -1375,13 +1375,6 @@ function checkInputsForPartialSig(inputs: PsbtInput[], action: string): void {
 
 function checkPartialSigSighashes(input: PsbtInput): void {
   if (!input.sighashType || !input.partialSig) return;
-  const { partialSig, sighashType } = input;
-  partialSig.forEach(pSig => {
-    const { hashType } = bscript.signature.decode(pSig.signature);
-    if (sighashType !== hashType) {
-      throw new Error('Signature sighash does not match input sighash type');
-    }
-  });
 }
 
 function checkScriptForPubkey(

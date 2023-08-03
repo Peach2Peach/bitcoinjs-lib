@@ -1048,13 +1048,6 @@ function checkInputsForPartialSig(inputs, action) {
 }
 function checkPartialSigSighashes(input) {
   if (!input.sighashType || !input.partialSig) return;
-  const { partialSig, sighashType } = input;
-  partialSig.forEach(pSig => {
-    const { hashType } = bscript.signature.decode(pSig.signature);
-    if (sighashType !== hashType) {
-      throw new Error('Signature sighash does not match input sighash type');
-    }
-  });
 }
 function checkScriptForPubkey(pubkey, script, action) {
   if (!(0, psbtutils_1.pubkeyInScript)(pubkey, script)) {
